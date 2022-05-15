@@ -2,7 +2,6 @@ import axios from "axios";
 import moment from "moment";
 import type { NextPage } from "next";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Badge, Button, Spinner, Stack } from "react-bootstrap";
 import DataTable, { TableColumn } from "react-data-table-component";
@@ -18,7 +17,6 @@ const Home: NextPage = () => {
     });
 
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const { client } = useMqtt();
 
@@ -74,9 +72,7 @@ const Home: NextPage = () => {
   const createTransaction = async () => {
     try {
       setLoading(true);
-      const resp = await axios.post("/transactions").then((res) => res.data);
-      // router.push(`/transactions/${resp.data._id}`);
-
+      await axios.post("/transactions").then((res) => res.data);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -88,7 +84,6 @@ const Home: NextPage = () => {
     if (client && data) {
       client.unsubscribe(topic);
       client.subscribe(topic);
-      console.log(`mqtt subscribe to ${topic}`);
       client.on("message", (topic, message) => {
         const mqttData = JSON.parse(message.toString()) as ITransaction;
         const docs: ITransaction[] = data ? data.docs : [];
@@ -109,7 +104,6 @@ const Home: NextPage = () => {
   const unsubscribe = () => {
     if (client) {
       client.unsubscribe(topic);
-      console.log(`unsubscribe from ${topic}`);
     }
   };
 

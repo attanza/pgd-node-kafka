@@ -2,11 +2,11 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import type { AppProps } from "next/app";
 import { SWRConfig } from "swr";
-import MqttContextProvider from "../src/contexts/mqtt.context";
+import { API_URL } from "../src/utils/constants";
 
-axios.defaults.baseURL = "http://localhost:10000";
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 function MyApp({ Component, pageProps }: AppProps) {
+  axios.defaults.baseURL = API_URL;
+  const fetcher = (url: string) => axios.get(url).then((res) => res.data);
   return (
     <SWRConfig
       value={{
@@ -14,9 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         fetcher,
       }}
     >
-      <MqttContextProvider>
-        <Component {...pageProps} />;
-      </MqttContextProvider>
+      <Component {...pageProps} />;
     </SWRConfig>
   );
 }
