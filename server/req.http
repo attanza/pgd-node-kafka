@@ -1,0 +1,56 @@
+@baseUrl = http://localhost:10000
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGVhNWVhMmJjMGFmZmFmZjczMTJkMDMiLCJpYXQiOjE2MjYwMDU0MTksImV4cCI6MTYyNjAwOTAxOX0.SGfwAWy9j8mCD-vZel-xkSNbKW_K_BazCPkE3T57xv4
+@id = 627bcf95162252a361849366
+###
+GET {{ baseUrl }}
+
+### LOGIN
+POST {{ baseUrl }}/login
+Content-Type: application/json
+
+{
+    "email": "dani@gmail.com",
+    "password": "password"
+}
+
+###
+GET {{ baseUrl }}/me
+
+### USERS
+GET {{ baseUrl }}/users
+Content-Type: application/json
+Authorization: {{ token }}
+###
+GET {{ baseUrl }}/users/60ea5ea2bc0affaff7312d03
+###
+POST {{baseUrl}}/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Dani",
+    "email": "dani@gmail.com",
+    "password": "password"
+}
+###
+PUT  {{baseUrl}}/users/60ea5ea2bc0affaff7312d03 HTTP/1.1
+Content-Type: application/json
+
+{
+    "isActive": true
+}
+###
+DELETE {{ baseUrl }}/users/60e590f96b55590e26cdf62b
+
+### Transaction
+GET {{baseUrl}}/transactions HTTP/1.1
+### Transaction
+GET {{baseUrl}}/transactions/{{ id }} HTTP/1.1
+### Transaction
+POST {{baseUrl}}/transactions HTTP/1.1
+
+### Kafka Topic List
+GET {{baseUrl}}/kafka-admin/topics HTTP/1.1
+### Kafka Create Topics
+POST {{baseUrl}}/kafka-admin/topics HTTP/1.1
+### MQTT
+POST {{baseUrl}}/kafka-admin/mqtt HTTP/1.1
