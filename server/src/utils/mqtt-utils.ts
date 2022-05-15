@@ -4,16 +4,16 @@ class MqttUtils {
   private client: MqttClient;
   connect() {
     // Connect mqtt with credentials (in case of needed, otherwise we can omit 2nd param)
-    const host = 'my.mqtt.io';
-    const port = '1883';
+    const host = process.env.MQTT_HOST;
+    const port = process.env.MQTT_HOST;
     const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
     const options: IClientOptions = {
       clientId,
       clean: true,
       connectTimeout: 4000,
       reconnectPeriod: 1000,
-      username: 'mqtt_user',
-      password: 'mqtt_user123',
+      username: process.env.MQTT_USERNAME,
+      password: process.env.MQTT_PASSWORD,
     };
     const connectUrl = `mqtt://${host}:${port}`;
     this.client = mqtt.connect(connectUrl, options);
@@ -26,7 +26,7 @@ class MqttUtils {
 
     // Connection callback
     this.client.on('connect', (payload: any) => {
-      console.log('mqtt client connected');
+      logger.info('mqtt client connected');
     });
 
     // mqtt subscriptions
