@@ -16,9 +16,9 @@ const Home: NextPage = () => {
       url: "/transactions",
     });
 
-  const [loading, setLoading] = useState(false);
-
   const { client } = useMqtt();
+
+  const [loading, setLoading] = useState(false);
 
   const topic = "node-kafka/Transaction/#";
 

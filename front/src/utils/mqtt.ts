@@ -1,19 +1,25 @@
 import mqtt, { IClientOptions, MqttClient } from "mqtt";
+import {
+  MQTT_HOST,
+  MQTT_PASSWORD,
+  MQTT_PORT,
+  MQTT_USERNAME,
+} from "./constants";
 
 class MqttHandler {
   private mqttClient: MqttClient;
 
   connect() {
-    const host = "my.mqtt.io";
-    const port = "8883";
+    const host = MQTT_HOST;
+    const port = MQTT_PORT;
     const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
     const options: IClientOptions = {
       clientId,
       clean: true,
       connectTimeout: 4000,
       reconnectPeriod: 1000,
-      username: "mqtt_user",
-      password: "mqtt_user123",
+      username: MQTT_USERNAME,
+      password: MQTT_PASSWORD,
     };
     const connectUrl = `ws://${host}:${port}`;
     this.mqttClient = mqtt.connect(connectUrl, options);

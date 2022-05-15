@@ -2,6 +2,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import type { AppProps } from "next/app";
 import { SWRConfig } from "swr";
+import MqttContextProvider from "../src/contexts/mqtt.context";
 import { API_URL } from "../src/utils/constants";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -14,7 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         fetcher,
       }}
     >
-      <Component {...pageProps} />;
+      <MqttContextProvider>
+        <Component {...pageProps} />;
+      </MqttContextProvider>
     </SWRConfig>
   );
 }
