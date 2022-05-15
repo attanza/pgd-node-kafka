@@ -37,7 +37,11 @@ export class App extends Server {
   private initializeMiddleware() {
     this.app.use(
       cors({
-        origin: ['http://localhost:3000'],
+        origin: [
+          'http://localhost:3000',
+          'http://34.101.230.192:3000',
+          'http://10.184.15.208:3000',
+        ],
         credentials: true,
       })
     );
