@@ -41,6 +41,7 @@ export class App extends Server {
           'http://localhost:3000',
           'http://34.101.230.192:3000',
           'http://10.184.15.208:3000',
+          'http://pgd.saga.io:3000',
         ],
         credentials: true,
       })
