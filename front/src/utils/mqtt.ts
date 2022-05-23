@@ -31,7 +31,9 @@ class MqttHandler {
     });
 
     // Connection callback
-    this.mqttClient.on("connect", () => {});
+    this.mqttClient.on("connect", () => {
+      console.log("MQTT connected");
+    });
 
     this.mqttClient.on("close", () => {
       console.log("mqtt client disconnected"); // eslint-disable-line

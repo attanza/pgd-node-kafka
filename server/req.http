@@ -1,4 +1,5 @@
-@baseUrl = http://localhost:10000
+# @baseUrl = http://localhost:10000
+@baseUrl = http://34.101.49.189:10000
 @token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MGVhNWVhMmJjMGFmZmFmZjczMTJkMDMiLCJpYXQiOjE2MjYwMDU0MTksImV4cCI6MTYyNjAwOTAxOX0.SGfwAWy9j8mCD-vZel-xkSNbKW_K_BazCPkE3T57xv4
 @id = 627bcf95162252a361849366
 ###
